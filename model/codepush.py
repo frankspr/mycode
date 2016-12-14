@@ -42,11 +42,10 @@ class pushcode():
       self.jumaddr = str(Config.read_config(basepath+'/conf/config.ini','prod','jumaddress'))
     print self.jumaddr
     try:
-     # self.ssh.connect(self.jumaddr,22,"root","wind2010")
+     # self.ssh.connect(self.jumaddr,22,"username","passwd")
       self.ssh.connect(self.jumaddr,22,"root",pkey=self.key)
       stdin, stdout, stderr = self.ssh.exec_command(cmd)
       aa = stdout.read()
-   #   print self.ssh.exit_status_ready()
       self.now = str(datetime.datetime.now())
       self.logfile = str(Config.read_config(basepath+'/conf/config.ini','public','logpath'))+"/push"+"-"+str(time.strftime('%Y%m%d'))+".log"
       self.log = open(self.logfile,"a")
@@ -56,7 +55,6 @@ class pushcode():
       self.red_color = '\033[1;31;40m'
       self.green_color = '\033[1;32;40m'
       self.res = '\033[0m'
-     # print '''%s,%s,%s''' % (self.green_color,aa,self.res)
       print aa
       if "failed=0" in aa:
         print '''%sSuccess !!!%s''' % (self.green_color,self.res)
