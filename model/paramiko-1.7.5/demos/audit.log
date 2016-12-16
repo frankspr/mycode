@@ -1,0 +1,209 @@
+[][][][][][][][][][][][][][][][]<open file '<stdin>', mode 'r' at 0x7f15ca76d0c0><open file '<stdin>', mode 'r' at 0x7f15ca76d0c0><open file '<stdin>', mode 'r' at 0x7f15ca76d0c0><open file '<stdin>', mode 'r' at 0x7f15ca76d0c0><open file '<stdin>', mode 'r' at 0x7f15ca76d0c0><open file '<stdin>', mode 'r' at 0x7f15ca76d0c0><open file '<stdin>', mode 'r' at 0x7f15ca76d0c0><open file '<stdin>', mode 'r' at 0x7f15ca76d0c0><open file '<stdin>', mode 'r' at 0x7f15ca76d0c0><open file '<stdin>', mode 'r' at 0x7f15ca76d0c0><open file '<stdin>', mode 'r' at 0x7f15ca76d0c0><open file '<stdin>', mode 'r' at 0x7f15ca76d0c0><open file '<stdin>', mode 'r' at 0x7f15ca76d0c0><open file '<stdin>', mode 'r' at 0x7f15ca76d0c0><open file '<stdin>', mode 'r' at 0x7f15ca76d0c0>Last login: Sat Dec 10 06:47:12 2016 from 10.100.1.254
+[root@vm002 ~]# df -lh
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/mapper/vg_vm002-lv_root
+                       18G  5.3G   12G  33% /
+tmpfs                 491M   84K  491M   1% /dev/shm
+/dev/sda1             477M   29M  424M   7% /boot
+[root@vm002 ~]# ls
+anaconda-ks.cfg                   install.log         [0m[01;34m公共的[0m  [01;34m图片[0m  [01;34m音乐[0m
+date.log                          install.log.syslog  [01;34m模板[0m    [01;34m文档[0m  [01;34m桌面[0m
+[01;31mepel-release-latest-6.noarch.rpm[0m  [01;34mrpmbuild[0m            [01;34m视频[0m    [01;34m下载[0m
+[m[root@vm002 ~]# ifconfig
+eth0      Link encap:Ethernet  HWaddr 00:0C:29:D9:0D:C8  
+          inet addr:10.100.0.55  Bcast:10.255.255.255  Mask:255.0.0.0
+          inet6 addr: fe80::20c:29ff:fed9:dc8/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1167120 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:41700 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:104101490 (99.2 MiB)  TX bytes:7063275 (6.7 MiB)
+
+eth1      Link encap:Ethernet  HWaddr 00:0C:29:D9:0D:D2  
+          inet addr:192.168.237.128  Bcast:192.168.237.255  Mask:255.255.255.0
+          inet6 addr: fe80::20c:29ff:fed9:dd2/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:7507 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1883 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:887972 (867.1 KiB)  TX bytes:376103 (367.2 KiB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:76039 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:76039 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:4950320 (4.7 MiB)  TX bytes:4950320 (4.7 MiB)
+
+[root@vm002 ~]# exit
+logout
+Last login: Sat Dec 10 06:48:18 2016 from 10.100.1.254
+[root@vm002 ~]# 
+[root@vm002 ~]# df 
+Filesystem           1K-blocks    Used Available Use% Mounted on
+/dev/mapper/vg_vm002-lv_root
+                      18003272 5541588  11540496  33% /
+tmpfs                   502172      84    502088   1% /dev/shm
+/dev/sda1               487652   28676    433376   7% /boot
+[root@vm002 ~]# ifc^C
+[root@vm002 ~]# exit
+logout
+Last login: Sat Dec 10 06:49:38 2016 from 10.100.1.254
+
+[root@vm002 ~]# 
+i
+f
+c
+o
+n
+f
+i
+g
+
+
+eth0      Link encap:Ethernet  HWaddr 00:0C:29:D9:0D:C8  
+          inet addr:10.100.0.55  Bcast:10.255.255.255  Mask:255.0.0.0
+
+          inet6 addr: fe80::20c:29ff:fed9:dc8/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1169940 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:41806 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:104325846 (99.4 MiB)  TX bytes:7078727 (6.7 MiB)
+
+eth1      Link encap:Ethernet  HWaddr 00:0C:29:D9:0D:D2  
+          inet addr:192.168.237.128  Bcast:192.168.237.255  Mask:255.255.255.0
+          inet6 addr: fe80::20c:29ff:fed9:dd2/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:7523 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1899 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:891384 (870.4 KiB)  TX bytes:379567 (370.6 KiB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBAC
+K RUNNING  MTU:65536  Metric:1
+          RX packets:76135 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:76135 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:4956560 (4.7 MiB)  TX bytes:4956560 (4.7 MiB)
+
+[root@vm002 ~]# 
+p
+w
+d
+
+/root
+[root@vm002 ~]# 
+
+[root@vm002 ~]# 
+
+[root@vm002 ~]# 
+
+[root@vm002 ~]# 
+e
+x
+i
+t
+
+logout
+
+Last login: Sat Dec 10 06:52:03 2016 from 10.100.1.254
+
+[root@vm002 ~]# 
+i
+f
+c
+o
+n
+f
+i
+g
+
+
+eth0      Link encap:Ethernet  HWaddr 00:0C:29:D9:0D:C8  
+          inet addr:10.100.0.55  Bcast:10.255.255.255  Mask:255.0.0.0
+
+          inet6 addr: fe80::20c:29ff:fed9:dc8/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:1173950 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:41865 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:104583629 (99.7 MiB)  TX bytes:7087641 (6.7 MiB)
+
+eth1      Link encap:Ethernet  HWaddr 00:0C:29:D9:0D:D2  
+          inet addr:192.168.237.128  Bcast:192.168.237.255  Mask:255.255.255.0
+          inet6 addr: fe80::20c:29ff:fed9:dd2/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:7528 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:1904 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:892614 (871.6 KiB)  TX bytes:380845 (371.9 KiB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBAC
+K RUNNING  MTU:65536  Metric:1
+          RX packets:76199 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:76199 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:4960720 (4.7 MiB)  TX bytes:4960720 (4.7 MiB)
+
+[root@vm002 ~]# 
+e
+x
+i
+t
+
+logout
+
+ifconfigwhich dfdf -lhexiti
+f
+c
+o
+n
+f
+i
+g
+
+e
+x
+i
+t
+
+
+
+
+2016-12-16 10:59:40  .join(records).replace('','
+')2016-12-16 10:59:55  .join(records).replace('','
+')2016-12-16 11:00:16  .join(records).replace('','
+')2016-12-16 11:01:28  
+2016-12-16 11:01:28  
+
+2016-12-16 11:01:28  
+
+
+2016-12-16 11:01:30  
+
+
+ifconfig
+2016-12-16 11:01:40  
+
+
+ifconfig
+pwd
+2016-12-16 11:02:18  
+
+
+ifconfig
+pwd
+[A[Aexit
+2016-12-16 11:06:51  
+2016-12-16 11:07:03  
+2016-12-16 11:07:08  
+2016-12-16 11:07:14  
