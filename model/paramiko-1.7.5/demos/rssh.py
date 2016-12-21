@@ -56,38 +56,49 @@ def agent_auth(transport, username):
 
 
 def manual_auth(username, hostname):
-    default_auth = 'p'
-    auth = raw_input('Auth by (p)assword, (r)sa key, or (d)ss key? [%s] ' % default_auth)
-    if len(auth) == 0:
-        auth = default_auth
+    #default_auth = 'p'
+    #auth = raw_input('Auth by (p)assword, (r)sa key, or (d)ss key? [%s] ' % default_auth)
+    #if len(auth) == 0:
+    #    auth = default_auth
+#    if auth == 'r':
+#        default_path = os.path.join(os.environ['HOME'], '.ssh', 'id_rsa')
+#        path = raw_input('RSA key [%s]: ' % default_path)
+#        if len(path) == 0:
+#            path = default_path
+#        try:
+#            key = paramiko.RSAKey.from_private_key_file(path)
+#        except paramiko.PasswordRequiredException:
+#            password = getpass.getpass('RSA key password: ')
+#            key = paramiko.RSAKey.from_private_key_file(path, password)
+#        t.auth_publickey(username, key)
+#    elif auth == 'd':
+#        default_path = os.path.join(os.environ['HOME'], '.ssh', 'id_dsa')
+#        path = raw_input('DSS key [%s]: ' % default_path)
+#        if len(path) == 0:
+#            path = default_path
+#        try:
+#            key = paramiko.DSSKey.from_private_key_file(path)
+#        except paramiko.PasswordRequiredException:
+#            password = getpass.getpass('DSS key password: ')
+#            key = paramiko.DSSKey.from_private_key_file(path, password)
+#        t.auth_publickey(username, key)
+#    else:
+#        pw = getpass.getpass('Password for %s@%s: ' % (username, hostname))
+#        t.auth_password(username, pw)
 
-    if auth == 'r':
-        default_path = os.path.join(os.environ['HOME'], '.ssh', 'id_rsa')
-        path = raw_input('RSA key [%s]: ' % default_path)
-        if len(path) == 0:
-            path = default_path
-        try:
-            key = paramiko.RSAKey.from_private_key_file(path)
-        except paramiko.PasswordRequiredException:
-            password = getpass.getpass('RSA key password: ')
-            key = paramiko.RSAKey.from_private_key_file(path, password)
-        t.auth_publickey(username, key)
-    elif auth == 'd':
-        default_path = os.path.join(os.environ['HOME'], '.ssh', 'id_dsa')
-        path = raw_input('DSS key [%s]: ' % default_path)
-        if len(path) == 0:
-            path = default_path
-        try:
-            key = paramiko.DSSKey.from_private_key_file(path)
-        except paramiko.PasswordRequiredException:
-            password = getpass.getpass('DSS key password: ')
-            key = paramiko.DSSKey.from_private_key_file(path, password)
-        t.auth_publickey(username, key)
-    else:
-        pw = getpass.getpass('Password for %s@%s: ' % (username, hostname))
-        t.auth_password(username, pw)
-
-
+    default_path = os.path.join(os.environ['HOME'],'.ssh', 'id_rsa')
+   # path = raw_input('RSA key [%s]: ' % default_path)
+   # if len(path) == 0:
+   #   path = default_path
+    try:
+      try:
+        key = paramiko.RSAKey.from_private_key_file(default_path)
+      except paramiko.PasswordRequiredException:
+        password = getpass.getpass('RSA key password: ')
+        key = paramiko.RSAKey.from_private_key_file(path, password)
+      t.auth_publickey(username,key)
+    except Exception, e:
+      pass
 # setup logging
 paramiko.util.log_to_file('demo.log')
 
@@ -98,8 +109,20 @@ if len(sys.argv) > 1:
     hostname = sys.argv[1]
     if hostname.find('@') >= 0:
         username, hostname = hostname.split('@')
+    if (len(username) == 0 or len(hostname) == 0):
+      print '''
+Usage:
+	rssh user@x.x.x.x
+	'''
+      sys.exit(1)
+    
 else:
-    hostname = raw_input('Hostname: ')
+   # hostname = raw_input('Hostname: ')
+   print '''
+Usage: 
+        rssh user@x.x.x.x
+	'''
+   sys.exit(1)
 if len(hostname) == 0:
     print '*** Hostname required.'
     sys.exit(1)
@@ -137,7 +160,7 @@ try:
     # check server's host key -- this is important.
     key = t.get_remote_server_key()
     if not keys.has_key(hostname):
-        print '*** WARNING: Unknown host key!'
+        print '*** WARNING: Unknown host key! '
     elif not keys[hostname].has_key(key.get_name()):
         print '*** WARNING: Unknown host key!'
     elif keys[hostname][key.get_name()] != key:
@@ -145,6 +168,7 @@ try:
         sys.exit(1)
     else:
         print '*** Host key OK.'
+        print ' '
 
     # get username
     if username == '':
@@ -157,7 +181,7 @@ try:
     if not t.is_authenticated():
         manual_auth(username, hostname)
     if not t.is_authenticated():
-        print '*** Authentication failed. :('
+        print '*** Authentication failed.'
         t.close()
         sys.exit(1)
 
