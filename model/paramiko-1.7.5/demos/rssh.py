@@ -29,7 +29,7 @@ import sys
 import threading
 import time
 import traceback
-import commands
+
 import paramiko
 import interactive
 
@@ -92,7 +92,7 @@ def manual_auth(username, hostname):
 paramiko.util.log_to_file('demo.log')
 
 #frank add
-ops_user = commands.getoutput('whoami')
+ops_user = getpass.getuser()
 username = ''
 if len(sys.argv) > 1:
     hostname = sys.argv[1]
