@@ -1,0 +1,26 @@
+import MySQLdb  
+  
+conn = MySQLdb.connect (host = "localhost", user = "root", passwd = "123456", db = "opdb")  
+cursor = conn.cursor () 
+cmd = "SELECT * FROM userinfo where username = wind" 
+cursor.execute (cmd)  
+rows = cursor.fetchall() 
+#print rows 
+dic = {}
+for row in rows:  
+    dic[row[0]]= row[1]
+print dic
+  
+#print "Number of rows returned: %d" % cursor.rowcount  
+  
+#cursor.execute ("SELECT * FROM userinfo")  
+#while (True):  
+#    row = cursor.fetchone()  
+#    if row == None:  
+#        break  
+#    print "%d, %s, %s, %s" % (row[0], row[1], row[2], row[3])  
+      
+#print "Number of rows returned: %d" % cursor.rowcount  
+  
+cursor.close ()  
+conn.close ()
