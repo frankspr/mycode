@@ -29,7 +29,7 @@ import sys
 import threading
 import time
 import traceback
-import MySQLdb
+
 import paramiko
 import interactive
 
@@ -99,41 +99,8 @@ def manual_auth(username, hostname):
       t.auth_publickey(username,key)
     except Exception, e:
       pass
-
-
-def get_serlst(ops_user):
-
-  try:
-    conn = MySQLdb.connect (host = "10.100.0.200", user = "root", passwd = "wind2010", db = "opdb")
-    cursor = conn.cursor ()
-    cmd = '''SELECT * FROM userinfo where username = "%s"''' % ops_user
-    cursor.execute (cmd)
-    rows = cursor.fetchall()
-    lst = []
-    for row in rows:
-       lst.append(row[2])
-    return lst
-
-#print "Number of rows returned: %d" % cursor.rowcount  
-
-#cursor.execute ("SELECT * FROM userinfo")  
-#while (True):  
-#    row = cursor.fetchone()  
-#    if row == None:  
-#        break  
-#    print "%d, %s, %s, %s" % (row[0], row[1], row[2], row[3])  
-
-#print "Number of rows returned: %d" % cursor.rowcount  
-
-    cursor.close ()
-    conn.close ()
-  except Exception as e:
-    print e
-
-
-
 # setup logging
-paramiko.util.log_to_file('/var/log/rssh.log')
+paramiko.util.log_to_file('demo.log')
 
 #frank add
 ops_user = getpass.getuser()
@@ -163,11 +130,6 @@ port = 22
 if hostname.find(':') >= 0:
     hostname, portstr = hostname.split(':')
     port = int(portstr)
-ownlst = get_serlst(ops_user)
-print ownlst
-if hostname not in ownlst:
-  print "Sorry you don't have permission connecting  to %s" % hostname
-  sys.exit(1)
 
 # now connect
 try:

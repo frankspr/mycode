@@ -1,11 +1,9 @@
 #coding:utf-8
 
 import socket
-
 import sys
-
 import time
-
+import MySQLdb
 # Windows does not have termios...
 
 try:
@@ -30,6 +28,22 @@ def interactive_shell(chan,hostname,username,ops_user):
 
         windows_shell(chan)
 
+###########
+def log_to_db(loginfo):
+  try:
+    conn = MySQLdb.connect(host = "10.100.0.200", user = "root", passwd = "wind2010",db = "opdb")
+    cursor = conn.cursor()
+    sql = '''insert into oplog(id,ops_user,date_time,op_time,login_ip,login_by,exec_command) values(%s,%s,%s,%s,%s,%s,%s)'''
+    cursor.execute(sql,loginfo)
+    conn.commit()
+    cursor.close()
+    conn.close()
+  except Exception as e:
+    print e
+
+
+
+############
 def posix_shell(chan,hostname,username,ops_user):
 
     import select
@@ -83,27 +97,19 @@ def posix_shell(chan,hostname,username,ops_user):
                 if x == '\r':         #每个命令输完回车都有一个\r
 
                     c_time = time.strftime('%Y-%m-%d %H:%M:%S')
-
+                    date_time = time.strftime('%Y%m%d')
                     cmd = ''.join(records).replace('\r','\n')#\r win换行,\n linux的换行
-
                     log = '%s |ops_user: %s| %s |login by: %s | %s' %(c_time,ops_user,hostname,username,cmd)
-
+                    loginfo = ('',ops_user,date_time,c_time,hostname,username,cmd)
                     f.write(log)    
-
                     f.flush() 
-
+                    log_to_db(loginfo)
                     records = []
-
                 if len(x) == 0:
-
                     break
-
                 chan.send(x)
-
     finally:
-
         termios.tcsetattr(sys.stdin, termios.TCSADRAIN, oldtty)
-
         f.close()
 
     
