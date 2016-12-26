@@ -1,5 +1,5 @@
 #coding:utf-8
-
+import os
 import socket
 import sys
 import time
@@ -52,7 +52,10 @@ def posix_shell(chan,hostname,username,ops_user):
 
     oldtty = termios.tcgetattr(sys.stdin)
     date = time.strftime('%Y-%m-%d')
-    f=file('/tmp/audit_%s_%s.log' % (ops_user,date),'ab+') 
+    logpath='/var/log/audit'
+    if not os.path.isdir(logpath):
+      os.makedirs(logpath,mode=0777)
+    f=file(logpath+'/audit_%s_%s.log' % (ops_user,date),'ab+') 
 
     try:
 
